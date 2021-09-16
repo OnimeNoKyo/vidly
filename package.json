@@ -1,0 +1,17 @@
+{
+  "name": "vidly",
+  "version": "1.0.0",
+  "description": "rental video services",
+  "main": "app.js",
+  "scripts": {
+    "test": "standard && mocha"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "video",
+    "rental"
+  ],
+  "author": "ianniau",
+  "license": "MIT"
+}
