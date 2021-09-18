@@ -4,7 +4,7 @@
   "description": "rental video services",
   "main": "app.js",
   "scripts": {
-    "test": "standard && mocha"
+    "test": "standard --env mocha && mocha"
   },
   "keywords": [
     "rest",
@@ -13,5 +13,8 @@
     "rental"
   ],
   "author": "ianniau",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
 }
