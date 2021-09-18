@@ -1,0 +1,22 @@
+{
+  "name": "vidly",
+  "version": "1.0.0",
+  "description": "rental video services",
+  "main": "app.js",
+  "scripts": {
+    "test": "standard --env mocha && mocha",
+    "start": "node src/app.js"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "video",
+    "rental"
+  ],
+  "author": "ianniau",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.1.1",
+    "standard": "^16.0.3"
+  }
+}

@@ -1,5 +1,7 @@
-# vidly
+# Vidly
 
-## description
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-rent movie backend services
+## Description
+
+A Movie Rent backend services
