@@ -1,0 +1,2 @@
+extends:
+  - https://bitbucket-mut.d.bbg/projects/EAPI89C3R/repos/api-linter/raw/rulesets/main-ruleset.yaml

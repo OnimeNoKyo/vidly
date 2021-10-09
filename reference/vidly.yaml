@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: vidly
+  version: '1.0'
+  summary: Movie Rent services
+  description: movie rental management services
+  contact:
+    email: john.doe@gmail.com
+    url: none
+    name: John Doe
+  license:
+    name: MIT
+    identifier: MIT
+servers:
+  - url: 'http://localhost:8080/vidly/v1'
+paths:
+  /movieGenders:
+    get:
+      summary: Read Movie Genders
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    $ref: '#/components/schemas/Page'
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MovieGender'
+                required:
+                  - page
+                  - items
+        '400':
+          description: Invalid pagination parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/UnexpectedError'
+      operationId: get-movieGenders
+      description: retrieve all movie genders available
+      parameters:
+        - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/pageNumber'
+      security:
+        - api-key1:
+            - movieGenderRead
+    post:
+      summary: Create a movie gender
+      operationId: post-movieGenders
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieGender'
+        '400':
+          description: Invalid or missing body properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/UnexpectedError'
+      security:
+        - api-key1:
+            - movieGenderWrite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieGender'
+  '/movieGenders/{movieGenderId}':
+    parameters:
+      - schema:
+          type: string
+        name: movieGenderId
+        in: path
+        required: true
+    delete:
+      summary: Delete a movie gender
+      tags:
+        - movie gender
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: No such resource (wrong ID in the path)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          $ref: '#/components/responses/UnexpectedError'
+      operationId: delete-movieGenders-movieGenderId
+      security:
+        - api-key1:
+            - movieGenderWrite
+components:
+  schemas:
+    MovieGender:
+      title: MovieGender
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+          readOnly: true
+        label:
+          type: string
+      required:
+        - id
+        - label
+    Page:
+      title: Page
+      type: object
+      properties:
+        pageSize:
+          type: integer
+        pageNumber:
+          type: integer
+      required:
+        - pageSize
+        - pageNumber
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        attribute:
+          type: string
+        path:
+          type: string
+      required:
+        - code
+        - message
+    Errors:
+      title: Errors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      required:
+        - errors
+  parameters:
+    pageSize:
+      name: pageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+    pageNumber:
+      name: pageNumber
+      in: query
+      required: false
+      schema:
+        type: integer
+  responses:
+    UnexpectedError:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    Unauthorized:
+      description: Missing or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+  securitySchemes:
+    api-key1:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: /tokens
+          scopes:
+            movieGenderRead: ''
+            movieGenderWrite: ''
+          authorizationUrl: /authorization
