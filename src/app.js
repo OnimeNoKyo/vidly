@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   const message = {
     message: 'Welcome to Vidly'
   }
-  return res.set('Content-Type', 'application/json').send(JSON.stringify(message))
+  return res.type('json').send(JSON.stringify(message))
 })
 
 app.route('/movieGenders')
