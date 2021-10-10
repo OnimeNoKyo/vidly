@@ -14,6 +14,14 @@ MovieGenderService.prototype.add = function (newMovieGender) {
   return movieGenderCreated
 }
 
+MovieGenderService.prototype.delete = function (movieGenderId) {
+  this.movieGenderRepository.delete(movieGenderId)
+}
+
+MovieGenderService.prototype.get = function (movieGenderId) {
+  return this.movieGenderRepository.get(movieGenderId)
+}
+
 MovieGenderService.prototype.validate = function (movieGender) {
   const schema = Joi.object({
     label: Joi.string().min(3).required()

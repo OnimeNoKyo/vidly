@@ -36,6 +36,19 @@ app.route('/movieGenders')
     return res.type('json').status(201).send(JSON.stringify(newMovieGender))
   })
 
+app.route('/movieGenders/:movieGenderId')
+  .delete((req, res, next) => {
+    const movieGenderId = parseInt(req.params.movieGenderId)
+    if (movieGenderId === undefined) {
+      return res.type('json').status(400).send({ errors: [{ code: '003', message: 'Invalid query parameter format' }] })
+    }
+    if (movieGenderService.get(movieGenderId).length === 0) {
+      return res.type('json').status(404).send({ errors: [{ code: '004', message: 'Not found' }] })
+    }
+    movieGenderService.delete(movieGenderId)
+    return res.type('json').status(204).send()
+  })
+
 root.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`)
 })

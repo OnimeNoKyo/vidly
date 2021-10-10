@@ -29,4 +29,10 @@ describe('MovieGenderServiceTest', function () {
       assert.ok(newLenght > initialLenght)
     })
   })
+  describe('delete', () => {
+    it('should delete a movieGender by id', async () => {
+      movieGenderService.delete(1)
+      assert.ok(movieGenderService.getAll().indexOf((el) => el.id === 1) < 0)
+    })
+  })
 })
