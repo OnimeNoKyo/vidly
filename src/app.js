@@ -1,7 +1,9 @@
 const express = require('express')
+const MovieGenderRepositoryMock = require('./repository/movieGenderRepositoryMock')
 const root = express()
 const app = express()
-const movieGenderService = require('./service/movieGenderService')
+const MovieGenderService = require('./service/movieGenderService')
+const movieGenderService = MovieGenderService.create(new MovieGenderRepositoryMock())
 
 const hostname = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
