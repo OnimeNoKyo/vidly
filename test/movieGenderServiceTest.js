@@ -1,5 +1,8 @@
 const assert = require('assert')
-const movieGenderService = require('../src/service/movieGenderService')
+const MovieGenderRepositoryMock = require('../src/repository/movieGenderRepositoryMock')
+const mockRepository = new MovieGenderRepositoryMock()
+const MovieGenderService = require('../src/service/movieGenderService')
+const movieGenderService = MovieGenderService.create(mockRepository)
 
 describe('MovieGenderServiceTest', function () {
   describe('getAll', function () {
