@@ -14,8 +14,9 @@ function add (newMovieGender) {
   const lastAvailableId = movieGenders.flatMap((e) => {
     return e.id
   }).sort((a, b) => a - b)[movieGenders.length - 1]
-
-  movieGenders.push({ id: lastAvailableId + 1, label: newMovieGender.label })
+  const movieGenderCreated = { id: lastAvailableId + 1, label: newMovieGender.label }
+  movieGenders.push(movieGenderCreated)
+  return movieGenderCreated
 }
 
 function validate (movieGender) {
