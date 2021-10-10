@@ -1,29 +1,31 @@
 const Joi = require('joi')
+const MovieGenderRepository = require('../repository/movieGenderRepository')
 
-const movieGenders = [
-  { id: 1, label: 'Horror' },
-  { id: 2, label: 'Sci-Fi' },
-  { id: 3, label: 'Romantic' }
-]
-
-function getAll () {
-  return movieGenders
+function MovieGenderService (movieGenderRepository) {
+  this.movieGenderRepository = movieGenderRepository
 }
 
-function add (newMovieGender) {
-  const lastAvailableId = movieGenders.flatMap((e) => {
-    return e.id
-  }).sort((a, b) => a - b)[movieGenders.length - 1]
-  const movieGenderCreated = { id: lastAvailableId + 1, label: newMovieGender.label }
-  movieGenders.push(movieGenderCreated)
+MovieGenderService.prototype.getAll = function () {
+  return this.movieGenderRepository.getAll()
+}
+
+MovieGenderService.prototype.add = function (newMovieGender) {
+  const movieGenderCreated = this.movieGenderRepository.add(newMovieGender)
   return movieGenderCreated
 }
 
-function validate (movieGender) {
+MovieGenderService.prototype.validate = function (movieGender) {
   const schema = Joi.object({
     label: Joi.string().min(3).required()
   }).unknown(true)
   return schema.validate(movieGender)
 }
 
-module.exports = { getAll, validate, add }
+function create (movieGenderRepository) {
+  if (movieGenderRepository === undefined || movieGenderRepository instanceof MovieGenderRepository === false) {
+    throw Error('Dependency Injection Error')
+  }
+  return new MovieGenderService(movieGenderRepository)
+}
+
+module.exports = { MovieGenderService, create }
