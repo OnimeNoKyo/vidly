@@ -1,4 +1,3 @@
-const { checkPreferences } = require('joi')
 const MovieGenderRepository = require('./movieGenderRepository')
 
 const _defaultMovieGenders = [
@@ -44,9 +43,9 @@ MovieGenderRepositoryMock.prototype.add = function (movieGender) {
 }
 
 MovieGenderRepositoryMock.prototype.delete = function (movieGenderId) {
-  this.movieGenders = this.movieGenders.filter(el => {
-    return el.id !== movieGenderId
-  })
+  const movieGender = this.movieGenders.find(c => c.id === movieGenderId)
+  const index = this.movieGenders.indexOf(movieGender)
+  this.movieGenders.splice(index, 1)
 }
 
 module.exports = MovieGenderRepositoryMock
