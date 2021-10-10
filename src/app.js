@@ -6,6 +6,8 @@ const movieGenderService = require('./service/movieGenderService')
 const hostname = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
 
+app.use(express.json()) // for parsing application/json
+
 root.use('/vidly/v1', app)
 
 app.get('/', (req, res) => {
