@@ -1,13 +1,13 @@
-﻿whos;whats;hows;inputs (source);outputs (usage);goals;;
-user, admin;Rent a Movie;list all movies;;Movies;list all movies avalaible into movie catalog;GET;/movies
-;;create a cart;UserId;Cart;create a cart for a user;POST;/users/{userId}/cart
-;;get a user active cart;UserId;Cart;get an user's cart;GET;/users/{userId}/cart
-;;add a movie to a cart;CartId, Movie;Movies;delete a movie from a cart;POST;/carts/{cartId}/movies
-;;checkout a cart;CartId;;checkout a cart;POST;/carts/{cartId}
-;;delete a movie from a Cart;CartId, MovieId;;delete a movie from a cart;DELETE;/carts/{cartId}/movies/{movieId}
-admin;Manage Movies;add movie genders;MovieGender;MovieGender;;POST;/movieGenders
-;;get movie genders;;MovieGenders;;GET;/movieGenders
-;;delete movie genders;MovieGender Id;;delete a movie gender into movie catalog;DELETE;/movieGenders/{movieGenderId}
-;;add movie;Movie;Movie;add a movie;POST;/movies
-;;update movie;Movie;Movie;update a movie;PUT;/movies/{movieId}
-;;delete movie;Movie Id;;delete a movie;DELETE;/movies/{movieId}
+﻿whos,whats,hows,inputs (source),outputs (usage),goals,,
+user- admin,Rent a Movie,list all movies,,Movies,list all movies avalaible into movie catalog,GET,/movies
+,,create a cart,UserId,Cart,create a cart for a user,POST,/users/{userId}/cart
+,,get a user active cart,UserId,Cart,get an user's cart,GET,/users/{userId}/cart
+,,add a movie to a cart,CartId- Movie,Movies,delete a movie from a cart,POST,/carts/{cartId}/movies
+,,checkout a cart,CartId,,checkout a cart,POST,/carts/{cartId}
+,,delete a movie from a Cart,CartId- MovieId,,delete a movie from a cart,DELETE,/carts/{cartId}/movies/{movieId}
+admin,Manage Movies,add movie genders,MovieGender,MovieGender,,POST,/movieGenders
+,,get movie genders,,MovieGenders,,GET,/movieGenders
+,,delete movie genders,MovieGender Id,,delete a movie gender into movie catalog,DELETE,/movieGenders/{movieGenderId}
+,,add movie,Movie,Movie,add a movie,POST,/movies
+,,update movie,Movie,Movie,update a movie,PUT,/movies/{movieId}
+,,delete movie,Movie Id,,delete a movie,DELETE,/movies/{movieId}
