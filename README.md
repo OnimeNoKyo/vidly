@@ -5,3 +5,9 @@
 ## Description
 
 A Movie Rent backend services
+
+## Diagrams
+
+### Class Diagram
+
+![class-diagram](./out/reference/vidly-class-diagram/Vidly%20Class%20Diagram.svg)

@@ -1,0 +1,13 @@
+@startuml Vidly Class Diagram
+class MovieGender {
+  private Long id
+  private String label
+}
+class Movie {
+  private Long id
+  private String title
+  private MovieGender[] genders
+}
+
+Movie "1" o-- "1..*" MovieGender : as >
+@enduml
